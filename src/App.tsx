@@ -9,7 +9,7 @@ function App() {
     </>
   ) : (
     <>
-      <pre>{JSON.stringify(countries, null, 2)}</pre>
+        <pre>{JSON.stringify(countries, null, 2)}</pre>
     </>
   );
 }
