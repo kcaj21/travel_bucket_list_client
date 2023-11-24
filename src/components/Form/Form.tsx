@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 type FormValues = {
   countryName: string;
@@ -9,26 +9,12 @@ type FormProps = {
 };
 
 export function Form({ onSubmit }: FormProps) {
-  const [countryName, setCountryName] = useState("");
-
-  // handleCountryNameChange
-  const handleCountryNameChange = (
-    event: React.FormEvent<HTMLInputElement>
-  ) => {
-    setCountryName(event.currentTarget.value);
-  };
-
-  // handle submit
-
-  const handleSubmit = () => {
-    event?.preventDefault();
-    onSubmit({ countryName });
-  };
+  const { register, handleSubmit } = useForm<FormValues>();
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit((values) => onSubmit(values))}>
       <label htmlFor="name"> Country name</label>
-      <input id="name" onChange={handleCountryNameChange}></input>
+      <input id="name" {...register("countryName")} />
       <button type="submit">Submit</button>
     </form>
   );
